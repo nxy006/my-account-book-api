@@ -1,0 +1,59 @@
+spring:
+  profiles:
+    active: dev
+  mvc:
+    data-format: yyyy-MM-dd
+  jackson:
+    time-zone: GMT+8
+    date-format: yyyy-MM-dd HH:mm:ss
+  servlet:
+    multipart:
+      max-file-size: 200MB
+      max-request-size: 200MB
+#      location: d:/WorkPlace/tmp/Data_struction_web
+  jpa:
+    database-platform: org.hibernate.dialect.MySQL5Dialect
+  #  redis:
+#    database: 0
+#    host: localhost
+#    port: 6379
+#    password:
+#    pool:
+#      max-active: 8
+#      max-wait: -1
+#      max-idle: 8
+#      min-idle: 0
+#      timeout: 0
+#  resources:
+#    static-locations: classpath:/static/,D:/WorkPlace/files/Data_struction_web/
+  datasource:
+    druid:
+      dbType: mysql
+      initialSize: 5
+      minIdle: 5
+      maxActive: 20
+      maxWait: 60000                            # 最大等待时间为60秒
+      timeBetweenEvictionRunsMillis: 60000      # 每60秒执行一次连接回收
+      minEvictableIdleTimeMillis: 300000        # 5分钟内没有连接的将被回收
+      validationQuery: SELECT 1 FROM DUAL
+      testWhileIdle: true
+      testOnBorrow: false
+      testOnReturn: false
+      filters: stat,wall,logback                # 过滤器：Stat接收状态，wall防止SQL注入，logback日志记录
+      useGlobalDataSourceStat: true             # 统计所有数据源状态
+      poolPreparedStatements: true              # 启用 PSCache
+      connectionProperties: druid.stat.mergeSql=true;druid.stat.slowSqlMillis=500
+      # Sql 合并统计，设置慢连接为 500ms
+#  rabbitmq:
+#    host: localhost
+#    port: 5672
+#    username: admin
+#    password: 123456
+#mybatis:
+#  config-location: classpath:mybatis/mybatis-config.xml
+#  typeAliasesPackage: com.nxy006.bean.entity,com.nxy006.bean.pojo
+#pagehelper:
+#  helperDialect: mysql
+#  reasonable: true
+#  supportMethodsArguments: true
+#  params: count=countSql
